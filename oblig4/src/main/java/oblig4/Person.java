@@ -1,11 +1,6 @@
 package oblig4;
 
-import java.time.LocalDate;
-
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
@@ -18,6 +13,11 @@ public class Person {
     @NotNull(message = "Etternavn er obligatorisk")
     private String etternavn;
 
-    
+    @Pattern(regexp = "^\\d{8}$", message = "Mobilnummer må være 8 siffer")
+    @NotNull(message = "Mobilnummer er obligatorisk")
+    private String mobilnummer;
+
+    @Size(min = 8, message = "Passord må ha minst 8 tegn")
+    private String passord;
 
 }
