@@ -22,8 +22,19 @@
 		Fornavn <input type="text" name="fornavn" value="${param.fornavn"><br>
 		Etternavn <input type="text" name="etternavn" value="${param.etternavn}"><br>
 		Mobil <input type="text" name="mobil" value="${person.mobil}"><br>
+		
+		<label>
+			<input type="radio" name="kjonn" value="${param.mann}">
+			Mann
+		</label>
+		<label>
+			<input type="radio" name="kjonn" value="${param.kvinne}">
+			Kvinne
+		</label>
+
 		Passord <input type="text" name="passord" value="${param.passord}"><br>
 		Valider passord <input type="text" name="valider" value="${param.valider}"><br>
+
 		<input type="submit" value="Meld inn"/>
 	</form>
 
