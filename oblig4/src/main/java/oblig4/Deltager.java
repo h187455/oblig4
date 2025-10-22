@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class Person {
+public class Deltager {
     @Size(min=2, max=20, message="Fornavn må inneholde fra 2 til 20")
     @NotNull(message = "Fornavn er obligatorisk")
     @Pattern(regexp = "^[A-ZÆØÅ][a-zA-ZæøåÆØÅ\\- ]*$", message = "Fornavn må starte med stor bokstav og kan bare inneholde bokstaver, bindestreke og mellomrom")
@@ -24,10 +24,10 @@ public class Person {
     private String passord;
     
     @NotNull(message = "Kjønn er obligatorisk")
-    @Pattern(regexp = "^(mann|kvinner)$", message = "kjønn må være enten 'mann' eller 'kvinner'")
+    @Pattern(regexp = "^(mann|kvinne)$", message = "kjønn må være enten 'mann' eller 'kvinne'")
     private String kjonn; 
     
-    public Person(String fornavn, String etternavn, String mobilnummer, String passord, String kjonn) {
+    public Deltager(String fornavn, String etternavn, String mobilnummer, String passord, String kjonn) {
     	this.fornavn = fornavn; 
     	this.etternavn = etternavn; 
     	this.mobilnummer = mobilnummer; 
