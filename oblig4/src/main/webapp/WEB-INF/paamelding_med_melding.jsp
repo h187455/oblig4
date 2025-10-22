@@ -14,6 +14,18 @@
 		 siden dette er pensum. Her får dere sette opp skjemaet
 		 selv. Lykke til.
 	-->
+	<c:forEach var="feilmelding" items="${feil}"">
+		<p style="color: red;">${feilmelding}</p>
+	</c:forEach>
+
+	<form action="sjekkPerson" method="get" id="person">
+		Fornavn <input type="text" name="fornavn" value="${param.fornavn"><br>
+		Etternavn <input type="text" name="etternavn" value="${param.etternavn}"><br>
+		Mobil <input type="text" name="mobil" value="${person.mobil}"><br>
+		Passord <input type="text" name="passord" value="${param.passord}"><br>
+		Valider passord <input type="text" name="valider" value="${param.valider}"><br>
+		<input type="submit" value="Meld inn"/>
+	</form>
 
 </body>
 </html>
