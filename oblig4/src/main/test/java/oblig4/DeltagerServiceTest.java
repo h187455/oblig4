@@ -18,11 +18,10 @@ public class DeltagerServiceTest {
 
     @BeforeEach
     void setup() {
-        // Kjøres før hver test
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
-        service = new DeltagerService(); // ny service for hver test
+        service = new DeltagerService(); 
     }
 
     @Test

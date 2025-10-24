@@ -34,7 +34,6 @@ public class PersonController {
         @RequestParam("repetertPassord") String repetertPassord,
         RedirectAttributes redirectAttributes) {
 
-        // Validering fra @Pattern / @NotNull
         if (bindingResult.hasErrors()) {
             model.addAttribute("feilmeldinger",
                 bindingResult.getAllErrors().stream()
@@ -42,22 +41,20 @@ public class PersonController {
             return "paamelding_med_melding";
         }
 
-        // Unikt mobilnummer
+        
         if (service.finnesMobil(deltager.getMobilnummer())) {
             model.addAttribute("feilmeldinger", List.of("Mobilnummer eksisterer allerede."));
             return "paamelding_med_melding";
         }
 
-        // Passord gjentatt korrekt
+        
         if (!deltager.getPassord().equals(repetertPassord)) {
             model.addAttribute("feilmeldinger", List.of("Passordene stemmer ikke overens."));
             return "paamelding_med_melding";
         }
 
-        // Legg til deltager i service
         service.leggTil(deltager);
 
-        // send deltager til bekreftelse
         redirectAttributes.addFlashAttribute("deltager", deltager);
         return "redirect:/paameldt";
     }
