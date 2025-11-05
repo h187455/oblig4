@@ -1,37 +1,30 @@
 package oblig4;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(schema = "deltager")
 public class Deltager {
-    @Size(min=2, max=20, message="Fornavn må inneholde fra 2 til 20")
-    @NotNull(message = "Fornavn er obligatorisk")
-    @Pattern(regexp = "^[A-ZÆØÅ][a-zA-ZæøåÆØÅ\\- ]*$", message = "Fornavn må starte med stor bokstav og kan bare inneholde bokstaver, bindestreke og mellomrom")
+	
+   @Id
     private String fornavn;
-
-    @Size(min = 2, max = 20, message = "Etternavn må inneholde fra 2 til 20")
-    @NotNull(message = "Etternavn er obligatorisk")
-    @Pattern(regexp = "^[A-ZÆØÅ][a-zA-ZæøåÆØÅ\\-]*$", message = "Etternavn må starte med stor bokstav og kan bare inneholde bokstaver og bindestreker")
     private String etternavn;
-
-    @Pattern(regexp = "^\\d{8}$", message = "Mobilnummer må være 8 siffer")
-    @NotNull(message = "Mobilnummer er obligatorisk")
     private String mobilnummer;
-
-    @Size(min = 8, message = "Passord må ha minst 8 tegn")
-    @NotNull(message = "Passord er obligatorisk")
-    private String passord;
-    
-    @NotNull(message = "Kjønn er obligatorisk")
-    @Pattern(regexp = "^(mann|kvinne)$", message = "kjønn må være enten 'mann' eller 'kvinne'")
+    private String hash;
+    private String salt; 
     private String kjonn; 
     
-    public Deltager(String fornavn, String etternavn, String mobilnummer, String passord, String kjonn) {
+    public Deltager(String fornavn, String etternavn, String mobilnummer, String hash, String salt, String kjonn) {
     	this.fornavn = fornavn; 
     	this.etternavn = etternavn; 
-    	this.mobilnummer = mobilnummer; 
-    	this.passord = passord; 
+    	this.mobilnummer = mobilnummer;
+    	this.hash = hash; 
+    	this.salt = salt; 
     	this.kjonn = kjonn; 
     }
     
@@ -60,12 +53,20 @@ public class Deltager {
     	this.mobilnummer = mobilnummer; 
     }
     
-    public String getPassord() {
-    	return passord; 
+    public String gethash() {
+    	return hash;
     }
     
-    public void setPassord(String passord) {
-    	this.passord = passord; 
+    public void sethash(String hash) {
+    	this.hash = hash; 
+    }
+    
+    public String getsalt() {
+    	return salt; 
+    }
+    
+    public void setsalt(String salt) {
+    	this.salt = salt; 
     }
     
     public String getKjonn() {
@@ -74,5 +75,23 @@ public class Deltager {
     
     public void setKjonn(String kjonn) {
     	this.kjonn = kjonn; 
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+    	if(this == o) return true; 
+    	if(o == null || getClass() != o.getClass()) return false; 
+    	Deltager deltager = (Deltager) o;
+    	return Objects.equals(mobilnummer, deltager.mobilnummer)&&
+    		   Objects.equals(fornavn, deltager.fornavn)&&
+    		   Objects.equals(etternavn, deltager.etternavn)&&
+    		   Objects.equals(hash, deltager.hash)&&
+    		   Objects.equals(salt, deltager.salt)&&
+    		   Objects.equals(kjonn, deltager.kjonn); 
+    	
+    }
+    @Override
+    public int hashCode() {
+    	return Objects.hash(mobilnummer, fornavn, etternavn, hash, salt, kjonn); 
     }
 }

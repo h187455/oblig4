@@ -1,39 +1,45 @@
 package oblig4;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 
 @Service
 public class DeltagerService {
+	
+	@Autowired
+	private DeltagerRepository deltagerRepository; 
 
-	public static List<Deltager> personer = new ArrayList<>();
+	public  List<Deltagerskjema> finnAlleDeltagereSortert() {
+		List<Deltager> deltagere = deltagerRepository.findAll(); 
+		
+		return deltagere.stream()
+				.map(this::konverterTilDeltagerskjema)
+				.sorted(Comparator.comparing(Deltagerskjema::getFornavn)
+								  .thenComparing(Deltagerskjema::getEtternavn))
+				.collect(Collectors.toList()); 
+		
+	}
 
-    public DeltagerService() {
-        personer.add(new Deltager("Ola", "Nordmann", "12345678", "passord1", "mann"));
-        personer.add(new Deltager("Kari", "Nordmann", "87654321", "passord2", "kvinne"));
+    private Deltagerskjema konverterTilDeltagerskjema(Deltager deltager) {
+    	return new Deltagerskjema(
+    			deltager.getFornavn(),
+    			deltager.getEtternavn(),
+    			deltager.getMobilnummer(),
+    			deltager.getKjonn()
+    			); 
+ 
+    	}
+    
+    public Optional<Deltager> finnDeltagerViaMobilnummer(String mobilnummer){
+        return deltagerRepository.findByMobilnummer(mobilnummer); 
+    	
     }
 
-    public List<Deltager> hentAlleSortert() {
-        return personer.stream()
-                       .sorted(Comparator.comparing(Deltager::getFornavn)
-                                         .thenComparing(Deltager::getEtternavn))
-                       .toList();  
-    }
 
+	}
 
-    public boolean finnesMobil(String mobil) {
-        return personer.stream().anyMatch(p -> p.getMobilnummer().equals(mobil));
-    }
-
-    public boolean leggTil(Deltager p) {
-        if (finnesMobil(p.getMobilnummer())) {
-            return false;
-        }
-        personer.add(p);
-        return true;
-    }
-}

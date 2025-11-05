@@ -39,3 +39,19 @@ form.addEventListener("submit", function(event) {
     }
 });
 
+formLoggInn.addEventListener("submit" , function(event){
+	let feilmeldinger = []; 
+	const mobilnummber = fromLoggInn.elements["mobilnummer"].value.trim(); 
+	const passord = fromLoggInn.elments["passord"].value; 
+	
+	if(!/^[0-9]{8}/.test(mobilnummber)){
+		feilmeldinger.push("mobilnummer må bestå av nøyaktig 8 sifre."); 
+	}
+	if(passord.length < 8){
+		feilmeldinger.push("Passord må være minst 8 tegn langt."); 
+	}
+	if(feilmeldinger.length > 0){
+		event.preventDefault();
+		alert(feilmeldinger.join("\n")); 
+	}
+}); 
