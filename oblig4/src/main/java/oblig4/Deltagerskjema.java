@@ -74,5 +74,24 @@ public class Deltagerskjema {
 	    			mobilnummer.equals(that.mobilnummer)&&
 	    			kjonn.equals(that.kjonn); 
 	    }
+	    private String passord;
+	    private String repetertPassord;
+
+	    public String getPassord() {
+	        return passord;
+	    }
+
+	    public void setPassord(String passord) {
+	        this.passord = passord;
+	    }
+
+	    public String getRepetertPassord() {
+	        return repetertPassord;
+	    }
+
+	    public void setRepetertPassord(String repetertPassord) {
+	        this.repetertPassord = repetertPassord;
+	    }
+
 
 }

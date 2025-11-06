@@ -8,16 +8,18 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(schema = "deltager")
+@Table(name = "deltager")
 public class Deltager {
 	
    @Id
+   	private String mobilnummer;
     private String fornavn;
     private String etternavn;
-    private String mobilnummer;
     private String hash;
     private String salt; 
     private String kjonn; 
+    
+    public Deltager() {}
     
     public Deltager(String fornavn, String etternavn, String mobilnummer, String hash, String salt, String kjonn) {
     	this.fornavn = fornavn; 
