@@ -12,8 +12,8 @@ public class ValidatorService {
 		return passord != null && passord.matches(MINST_AATE_TEGN); 
 	}
 	
-	public boolean isValidmoblinummer(String moblinummer) {
-		return moblinummer != null && moblinummer.matches(NOOYAKTIG_AATE_SIFFER); 
+	public boolean isValidmoblinummer(String mobilnummer) {
+		return mobilnummer != null && mobilnummer.matches(NOOYAKTIG_AATE_SIFFER); 
 	}
 	
 	public boolean passordMatch(String passord, String repPassord) {
