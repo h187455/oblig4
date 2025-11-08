@@ -1,11 +1,12 @@
+const formReg = document.querySelector("#validerOgRegistrer");
+const formLoggInn = document.querySelector("#validerOgLoggInn");
 
-const form = document.querySelector("form");
-form.addEventListener("submit", function(event) {
-    const fornavn = form.elements["fornavn"].value.trim();
-    const etternavn = form.elements["etternavn"].value.trim();
-    const mobilnummer = form.elements["mobilnummer"].value.trim();
-    const passord = form.elements["passord"].value;
-    const repetertPassord = form.elements["repetertPassord"].value;
+formReg.addEventListener("submit", function(event) {
+    const fornavn = formReg.elements["fornavn"].value.trim();
+    const etternavn = formReg.elements["etternavn"].value.trim();
+    const mobilnummer = formReg.elements["mobilnummer"].value.trim();
+    const passord = formReg.elements["passord"].value;
+    const repetertPassord = formReg.elements["repetertPassord"].value;
 
     let feilmeldinger = [];
 
@@ -41,8 +42,8 @@ form.addEventListener("submit", function(event) {
 
 formLoggInn.addEventListener("submit" , function(event){
 	let feilmeldinger = []; 
-	const mobilnummber = fromLoggInn.elements["mobilnummer"].value.trim(); 
-	const passord = fromLoggInn.elments["passord"].value; 
+	const mobilnummber = formLoggInn.elements["mobilnummer"].value.trim(); 
+	const passord = formLoggInn.elements["passord"].value; 
 	
 	if(!/^[0-9]{8}/.test(mobilnummber)){
 		feilmeldinger.push("mobilnummer må bestå av nøyaktig 8 sifre."); 

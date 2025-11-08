@@ -5,7 +5,7 @@
 <html lang="no">
 	<head>
 		<link rel="stylesheet" href="simple.css">
-		<script src="kilentValidering.js" defer></script>
+		<script src="klientValidering.js" defer></script>
 		<title>Logg inn</title>
 	</head>
 	
