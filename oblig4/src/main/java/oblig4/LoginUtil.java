@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpSession;
 
 public class LoginUtil {
 
-    private static final int SESSION_TIMEOUT_SECONDS = 600;
+    private static final int SESSION_TIMEOUT_SECONDS = 20;
 
     
     public static void loggUtBruker(HttpSession session) {
